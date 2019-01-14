@@ -229,6 +229,14 @@
     <Compile Include="Migrations\201901141852349_UpdatedMovieModel.Designer.cs">
       <DependentUpon>201901141852349_UpdatedMovieModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901141911294_UpdatedMembershipTypeWithNameProperty.cs" />
+    <Compile Include="Migrations\201901141911294_UpdatedMembershipTypeWithNameProperty.Designer.cs">
+      <DependentUpon>201901141911294_UpdatedMembershipTypeWithNameProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901141912218_SeedMembershipType.cs" />
+    <Compile Include="Migrations\201901141912218_SeedMembershipType.Designer.cs">
+      <DependentUpon>201901141912218_SeedMembershipType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -376,6 +384,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901141852349_UpdatedMovieModel.resx">
       <DependentUpon>201901141852349_UpdatedMovieModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901141911294_UpdatedMembershipTypeWithNameProperty.resx">
+      <DependentUpon>201901141911294_UpdatedMembershipTypeWithNameProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901141912218_SeedMembershipType.resx">
+      <DependentUpon>201901141912218_SeedMembershipType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
