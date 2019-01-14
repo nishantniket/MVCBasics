@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -24,13 +25,13 @@ namespace MovieApp.Controllers
         // GET: Customers
         public ViewResult Index()
         {
-            var customers = GetCustomer();
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
             return View(customers);
         }
 
         public ActionResult Details(int id)
         {
-            var customer = GetCustomer().SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
             {
@@ -39,14 +40,6 @@ namespace MovieApp.Controllers
 
             return View(customer);
         }
-
-        private IEnumerable<Customer> GetCustomer()
-        {
-            return new List<Customer>
-            {
-                new Customer(){Id = 1,Name = "Nishant Niket"},
-                new Customer() {Id = 2,Name = "JG"}
-            };
-        }
+        
     }
 }
