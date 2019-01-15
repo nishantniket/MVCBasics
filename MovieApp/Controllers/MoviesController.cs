@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Owin.Security.Provider;
 using MovieApp.Models;
 using MovieApp.ViewModels;
 
@@ -39,6 +40,8 @@ namespace MovieApp.Controllers
 
             return View(movie);
         }
+
+       
 
         //GET Movies/Random
         public ActionResult Random()
