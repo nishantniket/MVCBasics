@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Web;
@@ -40,8 +41,47 @@ namespace MovieApp.Controllers
 
             return View(movie);
         }
+        [HttpPost]
+        public ActionResult Save(Movie newMovie)
+        {
+            if (newMovie.Id == 0)
+            {
+                _context.Movies.Add(newMovie);
+            }
+            else
+            {
+                var movie = _context.Movies.Single(c => c.Id == newMovie.Id);
+                movie.Name = newMovie.Name;
+                movie.NumberInStock = newMovie.NumberInStock;
+                movie.ReleaseDate = newMovie.ReleaseDate;
+                movie.DateAdded = DateTime.Now;
+                movie.GenreId = newMovie.GenreId;
+            }
 
-       
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+           
+            return RedirectToAction("Index", "Movies");
+        }   
+
+        public ActionResult Edit(int id)
+        {
+            var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
+            var genres = _context.Genres.ToList();
+            var viewModel = new MovieFormViewModel
+            {
+                Movie = movie,
+                Genres = genres
+            };
+            return View("MovieForm",viewModel);
+        }
 
         //GET Movies/Random
         public ActionResult Random()

@@ -6,10 +6,12 @@
 }
 
 <h2>Movies</h2>
+<a class="btn btn-primary" href="/Movies/Edit" id="login-form">New Movie</a>
 <table class="table table-striped table-hover">
     <thead>
     <tr>
         <th>Movies</th>
+        <th>Genre</th>
     </tr>
     </thead>
     <tbody>
@@ -17,7 +19,10 @@
     {
         <tr>
             <td>
-                @movie.Name
+                @Html.ActionLink(movie.Name, "Edit", "Movies" ,new {id = movie.Id},null)
+            </td>
+            <td>
+                @movie.Genre.Name
             </td>
         </tr>
     }
