@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Data.Entity;
 using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
@@ -25,7 +26,7 @@ namespace MovieApp.Controllers.API
         public IEnumerable<CustomerDto> GetCustomers()
         {
             // delegation find out what the fuck it means apart from the usual meaning
-            return _context.Customers.ToList().Select(Mapper.Map<Customer,CustomerDto>);
+            return _context.Customers.Include(c => c.MembershipType).ToList().Select(Mapper.Map<Customer,CustomerDto>);
         }
 
         //GET api/customers/1
