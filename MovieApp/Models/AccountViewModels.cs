@@ -6,6 +6,9 @@ namespace MovieApp.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
+        [Display(Name = "Phone")]
+        public string UserPhoneNumber { get; set; }
+        [Required]
         [Display(Name = "Driving License")]
         public string DrivingLicense { get; set; }
         [Required]
@@ -69,7 +72,6 @@ namespace MovieApp.Models
     {
         [Required]
         [Display(Name = "Phone")]
-        [StringLength(10,ErrorMessage = "The {0} must be least {10}",MinimumLength = 10)]
         public string UserPhoneNumber { get; set; }
 
         [Required]

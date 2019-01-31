@@ -155,7 +155,8 @@ namespace MovieApp.Controllers
                 {
                     UserName = model.Email,
                     Email = model.Email,
-                    DrivingLicense = model.DrivingLicense
+                    DrivingLicense = model.DrivingLicense,
+                    UserPhoneNumber = model.UserPhoneNumber
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -376,7 +377,8 @@ namespace MovieApp.Controllers
                 {
                     UserName = model.Email,
                     Email = model.Email,
-                    DrivingLicense = model.DrivingLicense
+                    DrivingLicense = model.DrivingLicense,
+                    UserPhoneNumber = model.UserPhoneNumber
                 };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
