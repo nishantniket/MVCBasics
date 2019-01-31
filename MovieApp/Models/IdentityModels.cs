@@ -12,6 +12,11 @@ namespace MovieApp.Models
     public class ApplicationUser : IdentityUser
     {
         [Required]
+        [Display(Name = "Phone")]
+        [StringLength(10, ErrorMessage = "The {0} must be least {10}", MinimumLength = 10)]
+        public string UserPhoneNumber { get; set; }
+
+        [Required]
         [StringLength(255)]
         public string DrivingLicense { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
