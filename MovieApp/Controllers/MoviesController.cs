@@ -6,12 +6,14 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using Microsoft.Owin.Security.Provider;
 using MovieApp.Models;
 using MovieApp.ViewModels;
 
 namespace MovieApp.Controllers
 {
+    [Authorize]
     public class MoviesController : Controller
     {
         private ApplicationDbContext _context;
@@ -28,7 +30,10 @@ namespace MovieApp.Controllers
         public ViewResult Index()
         {
             var movies = _context.Movies.Include(e => e.Genre).ToList();
-            return View(movies);
+            if (User.IsInRole(RoleName.CanManageMovies))
+                return View("List");
+
+                return View("ReadOnlyList");
         }
 
         public ActionResult Details(int id)
@@ -69,7 +74,17 @@ namespace MovieApp.Controllers
             }
            
             return RedirectToAction("Index", "Movies");
-        }   
+        }
+        [Authorize(Roles = RoleName.CanManageMovies)]
+        public ActionResult New()
+        {
+            var genres = _context.Genres.ToList();
+            var viewModel = new MovieFormViewModel()
+            {
+                Genres = genres
+            };
+            return View("MovieForm", viewModel);
+        }
 
         public ActionResult Edit(int id)
         {
